@@ -1,0 +1,39 @@
+-- Create database
+CREATE DATABASE currency_converter;
+
+-- Use the database
+USE currency_converter;
+
+-- Create table for exchange rates
+CREATE TABLE exchange_rates (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    from_currency VARCHAR(10) NOT NULL,
+    to_currency VARCHAR(10) NOT NULL,
+    exchange_rate DOUBLE NOT NULL,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Insert initial data into exchange_rates table
+INSERT INTO exchange_rates (from_currency, to_currency, exchange_rate) VALUES
+('USD', 'EUR', 0.85),
+('USD', 'GBP', 0.75),
+('USD', 'JPY', 110.0),
+('EUR', 'USD', 1.18),
+('EUR', 'GBP', 0.88),
+('EUR', 'JPY', 129.53),
+('GBP', 'USD', 1.33),
+('GBP', 'EUR', 1.14),
+('GBP', 'JPY', 147.13),
+('JPY', 'USD', 0.0091),
+('JPY', 'EUR', 0.0077),
+('JPY', 'GBP', 0.0068);
+
+-- Create table for users (if needed for authentication purposes)
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL -- Password should be stored as a hash in real applications
+);
+
+-- Insert an admin user for testing purposes (password should be hashed in real applications)
+INSERT INTO users (username, password) VALUES ('001122', '123');

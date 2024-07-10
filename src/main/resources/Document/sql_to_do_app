@@ -1,0 +1,33 @@
+-- Create database
+CREATE DATABASE todo_app;
+
+-- Use the database
+USE todo_app;
+
+-- Create table for tasks
+CREATE TABLE tasks (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    status ENUM('Pending', 'Completed', 'Cancelled') DEFAULT 'Pending',
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Insert initial data into tasks table (optional)
+INSERT INTO tasks (username, description, status, createdAt, updatedAt) VALUES
+('user1', 'Buy groceries', 'Pending', NOW(), NOW()),
+('user1', 'Finish project report', 'Completed', NOW(), NOW()),
+('user1', 'Plan weekend trip', 'Cancelled', NOW(), NOW()),
+('user2', 'Clean the house', 'Pending', NOW(), NOW()),
+('user2', 'Read a book', 'Completed', NOW(), NOW());
+
+-- Create table for users (if needed for authentication purposes)
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL -- Password should be stored as a hash in real applications
+);
+
+-- Insert some users for testing purposes (password should be hashed in real applications)
+INSERT INTO users (username, password) VALUES ('user1', 'password1'), ('user2', 'password2');

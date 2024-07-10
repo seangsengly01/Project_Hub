@@ -1,0 +1,63 @@
+
+-- for using with database
+USE db_to_do_list_management;
+
+
+-- create user table
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL
+);
+
+-- create task table for user
+CREATE TABLE tasks (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    FOREIGN KEY (username) REFERENCES users(username)
+);
+
+-- add new column into task table
+
+ALTER TABLE tasks ADD COLUMN status VARCHAR(50) DEFAULT 'Pending';
+ALTER TABLE tasks ADD COLUMN createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE tasks ADD COLUMN updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+
+
+-- use for query data from user data
+SELECT * FROM db_to_do_list_management.users;
+-- use for query data from task data
+SELECT * FROM db_to_do_list_management.task;
+
+
+
+
+-- Create the database
+CREATE DATABASE IF NOT EXISTS PersonalFinanceTracker;
+USE PersonalFinanceTracker;
+
+-- Create the users table
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL, -- Assuming you are storing hashed passwords
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create the mini_personal_finance table
+CREATE TABLE IF NOT EXISTS mini_personal_finance (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    date DATE NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    amount DOUBLE NOT NULL,
+    username VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (username) REFERENCES users(username)
+);
+
+
+
+
+

@@ -1,0 +1,33 @@
+-- Create database
+CREATE DATABASE personal_finance_tracker;
+
+-- Use the database
+USE personal_finance_tracker;
+
+-- Create table for finance records
+CREATE TABLE mini_personal_finance (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    date DATE NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    amount DOUBLE NOT NULL,
+    username VARCHAR(50) NOT NULL
+);
+
+-- Insert initial data into mini_personal_finance table (optional)
+INSERT INTO mini_personal_finance (date, description, amount, username) VALUES
+('2023-01-01', 'Groceries', 150.00, 'user1'),
+('2023-01-05', 'Salary', 3000.00, 'user1'),
+('2023-01-10', 'Rent', 1200.00, 'user1'),
+('2023-02-01', 'Groceries', 160.00, 'user1'),
+('2023-02-05', 'Electricity Bill', 200.00, 'user1'),
+('2023-02-10', 'Internet Bill', 50.00, 'user1');
+
+-- Create table for users (if needed for authentication purposes)
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL -- Password should be stored as a hash in real applications
+);
+
+-- Insert some users for testing purposes (password should be hashed in real applications)
+INSERT INTO users (username, password) VALUES ('user1', 'password1'), ('user2', 'password2');
