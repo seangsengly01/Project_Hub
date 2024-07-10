@@ -62,7 +62,7 @@ public class MiniPersonalFinanceTracker extends Application {
         logoImageView.setFitWidth(100);
         logoImageView.setPreserveRatio(true);
 
-        Label welcomeLabel = new Label("Welcome, " + username + "!");
+        Label welcomeLabel = new Label("Welcome Back Mini finanace tracker , " + username + "!");
         welcomeLabel.setStyle("-fx-font-size: 24px; -fx-padding: 10px; -fx-text-fill: #FFD700;");
 
         datePicker = new DatePicker();
